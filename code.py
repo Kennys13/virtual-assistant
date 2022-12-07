@@ -36,7 +36,10 @@ def take_command():
 
 
 def run_alpha():
-        command =take_command()
+        command = take_command()
+        file_out=open("flie_out.txt","w")
+        file_in=open("data_input.txt","w")
+        file_in.write(command+'\n')
         print(command)
         if 'play' in command:
                 song =command.replace('play','')
@@ -50,8 +53,10 @@ def run_alpha():
                 info = wikipedia.summary(person,1)
                 print(info)
                 talk(info)
+                file_out.write(info+'\n')
         elif 'date' in command:
                 talk('sorry, I have a headache')
+
         elif 'are you single' in command:
                 talk('I am in a relationship with wifi')
         elif 'joke' in command:
@@ -59,14 +64,19 @@ def run_alpha():
         elif 'exit'in command:
                 engine.say("Thank you for using me, This is ALPHA signing off")
                 print("Thank you for using me, This is ALPHA signing off......")
+                file_out.write("exit\n")
         elif 'search'in command:
                 serh = command.replace('search','')
                 data= search(command)
                 print(data)
                 talk(data)
+                file_out.write(data+'\n')
         else:
                 talk('Please say the command again.')
+        
 
 
 while True:
+        
         run_alpha()
+        
